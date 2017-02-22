@@ -1,36 +1,30 @@
 import React from 'react'
-import {BarChart, Bar, CartesianGrid, XAxis, YAxis, Legend} from 'recharts';
-/*import axios from 'axios';*/
-
+import {BarChart, PieChart, Pie, Bar, CartesianGrid, XAxis, YAxis, Legend} from 'recharts';
+import axios from 'axios';
+import './App.css';
 
 
 export default React.createClass({
 
-data :  [
-      {name: 'אורי', uv: 4000, pv: 2400, amt: 2400},
-      {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-      {name: 'Page C', uv: 2000, pv: 5800, amt: 2290},
-      {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
-      {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
-      {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
-      {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
-],
-
   getInitialState: function getInitialState() {
     return {
-      data: [],
+      bardata: [],
+      piedata: []
     };
   },
 
   componentDidMount: function componentDidMount() {
-/*    this.serverRequest = axios.get("http://192.168.7.223:4000/feedback/500").then(function (result) { 
-      th.setState({
-        data: result.data,
-
-
+    const TH = this;
+    this.serverRequest = axios.get("http://192.9.200.17:4000/graph/pdemand1").then(function (result) { 
+        const bardata = result.data;
+        const pdata = bardata.reduce(function (acc,val) {return [acc[0] + val['פתוחות'] , acc[1] + val['סגורות']]} , [0,0]);
+        const piedata = [{'סגורות':pdata[0]},{'פתוחות':pdata[1]}];
+      TH.setState({
+        bardata: bardata,
+        piedata: piedata
       });
-    });*/
-    this.setState({data: this.data})
+    });
+/*    this.setState({data: this.data})*/
   },
 
   componentWillUnmount: function componentWillUnmount() {
@@ -39,17 +33,36 @@ data :  [
 
   render() {
     return (
-      <BarChart width={600} height={300} data={this.state.data}
-            margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="name"/>
-       <YAxis/>
-       <CartesianGrid strokeDasharray="3 3"/>
-       <Legend />
-       <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-       <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-       <Bar dataKey="amt" stackId="b" fill="#a2aaad" />   
-       <Bar dataKey="uv" stackId="c" fill="#82ca9d" />           
-      </BarChart> 
+      <div > 
+      <h3 className='center'> מצב דרישות רכש לתכנון אחרון</h3>
+        <BarChart width={600} height={300} data={this.state.bardata}
+              margin={{top: 40, right: 10, left: 10, bottom: 25}}>
+         <XAxis dataKey="שם"/>
+         <YAxis/>
+
+         <Legend />
+         <Bar dataKey="פתוחות" stackId="a" fill="#8884d8" />
+         <Bar dataKey="סגורות" stackId="a" fill="#82ca9d" />
+        </BarChart> 
+        <PieChart width={730} height={250}  margin={{top: 40, right: 10, left: 10, bottom: 25}}>
+          <Pie data={this.state.piedata} cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+        </PieChart> 
+      </div>
       )
   }
 });
+/*
+        <BarChart width={600} height={300} data={this.state.bardata}
+              margin={{top: 40, right: 60, left: 40, bottom: 25}}>
+         <XAxis dataKey="שם"/>
+         <YAxis/>
+         <CartesianGrid strokeDasharray="3 3"/>
+         <Legend />
+         <Bar dataKey="פתוחות" stackId="a" fill="#8884d8" />
+         <Bar dataKey="סגורות" stackId="a" fill="#82ca9d" />
+        </BarChart> 
+        <PieChart width={730} height={250}  margin={{top: 40, right: 60, left: 40, bottom: 25}}>
+          <Pie data={this.state.piedata} cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+        </PieChart> 
+ 
+       */
