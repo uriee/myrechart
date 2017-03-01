@@ -1,7 +1,9 @@
 import React from 'react'
-import {BarChart, PieChart, Pie, Bar, CartesianGrid, XAxis, YAxis, Legend} from 'recharts';
+import {Grid,Col,Row}from 'react-bootstrap';
 import axios from 'axios';
 import './App.css';
+import Mypie from './Mypie.js';
+import Mybar from './Mybar.js';
 
 
 export default React.createClass({
@@ -13,19 +15,20 @@ export default React.createClass({
     };
   },
 
+
   componentDidMount: function componentDidMount() {
     const TH = this;
     this.serverRequest = axios.get("http://192.9.200.17:4000/graph/pdemand1").then(function (result) { 
         const bardata = result.data;
         const pdata = bardata.reduce(function (acc,val) {return [acc[0] + val['פתוחות'] , acc[1] + val['סגורות']]} , [0,0]);
-        const piedata = [{'סגורות':pdata[0]},{'פתוחות':pdata[1]}];
-      TH.setState({
-        bardata: bardata,
-        piedata: piedata
-      });
+        const piedata = [{name : 'סגורות', value : pdata[0]},{name : 'פתוחות', value : pdata[1]}];
+        TH.setState({
+          bardata: bardata,
+          piedata: piedata
+        });
     });
-/*    this.setState({data: this.data})*/
   },
+
 
   componentWillUnmount: function componentWillUnmount() {
     this.serverRequest.abort();
@@ -33,36 +36,17 @@ export default React.createClass({
 
   render() {
     return (
-      <div > 
-      <h3 className='center'> מצב דרישות רכש לתכנון אחרון</h3>
-        <BarChart width={600} height={300} data={this.state.bardata}
-              margin={{top: 40, right: 10, left: 10, bottom: 25}}>
-         <XAxis dataKey="שם"/>
-         <YAxis/>
-
-         <Legend />
-         <Bar dataKey="פתוחות" stackId="a" fill="#8884d8" />
-         <Bar dataKey="סגורות" stackId="a" fill="#82ca9d" />
-        </BarChart> 
-        <PieChart width={730} height={250}  margin={{top: 40, right: 10, left: 10, bottom: 25}}>
-          <Pie data={this.state.piedata} cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
-        </PieChart> 
-      </div>
+      <Grid>
+        <Row className="show-grid"> 
+          <Col sm={8} md={8}>
+          <Mybar data={this.state.bardata} title='מצב דרישות רכש לתכנון אחרון' config={{height:600, width: 900, X: "שם",
+              datakeys: [{name:"פתוחות", stack:'a'},{name:"סגורות", stack:'a'}] }} />            
+           </Col> 
+           <Col sm={4} md={4}>
+            <Mypie width={450} height={500} title='מצב דרישות' data={this.state.piedata} />
+           </Col>
+         </Row>
+       </Grid>  
       )
   }
 });
-/*
-        <BarChart width={600} height={300} data={this.state.bardata}
-              margin={{top: 40, right: 60, left: 40, bottom: 25}}>
-         <XAxis dataKey="שם"/>
-         <YAxis/>
-         <CartesianGrid strokeDasharray="3 3"/>
-         <Legend />
-         <Bar dataKey="פתוחות" stackId="a" fill="#8884d8" />
-         <Bar dataKey="סגורות" stackId="a" fill="#82ca9d" />
-        </BarChart> 
-        <PieChart width={730} height={250}  margin={{top: 40, right: 60, left: 40, bottom: 25}}>
-          <Pie data={this.state.piedata} cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
-        </PieChart> 
- 
-       */
