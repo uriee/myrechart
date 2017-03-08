@@ -1,5 +1,4 @@
 import React from 'react'
-import {Grid,Col,Row}from 'react-bootstrap';
 import axios from 'axios';
 import './App.css';
 import Mypie from './Mypie.js';
@@ -36,17 +35,16 @@ export default React.createClass({
 
   render() {
     return (
-      <Grid>
-        <Row className="show-grid"> 
-          <Col sm={8} md={8}>
-          <Mybar data={this.state.bardata} title='מצב דרישות רכש לתכנון אחרון' config={{height:600, width: 900, X: "שם",
+        <div className='height90'>      
+         <div className='left75'>
+          <Mybar data={this.state.bardata} title='מצב דרישות רכש לתכנון אחרון' config={{ X: "שם",
               datakeys: [{name:"פתוחות", stack:'a'},{name:"סגורות", stack:'a'}] }} />            
-           </Col> 
-           <Col sm={4} md={4}>
-            <Mypie width={450} height={500} title='מצב דרישות' data={this.state.piedata} />
-           </Col>
-         </Row>
-       </Grid>  
+        </div>
+        <div className='left25'> 
+          <Mypie  title='מצב דרישות' data={this.state.piedata} />
+          </div>
+       </div>
+  
       )
   }
 });
