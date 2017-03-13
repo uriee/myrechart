@@ -14,7 +14,7 @@ class App extends Component {
     <Route path="/Graph2" component={Graph2}/>
     <Route path="/Graph1" component={Graph1}/>
     <Route path="/Graph3" component={Graph3}/>
-    <Route path="/Graph4" component={Graph4}/>    
+    <Route path="/Graph4" component={Graph4}/> 
   </Router>
     );
   }

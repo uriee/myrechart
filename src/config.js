@@ -1,4 +1,5 @@
-export const COLORS = ['#8884d8', '#00C49F', '#FFBB28', '#FF8042', '#0088FE'];
+
+export const COLORS = ['#8884d8', '#00C49F', '#FFBB28', '#FF8042', '#0088FE','#91bfdb','#2c8d59','#448ec3'];
 export const getbardata  = function(data) {
     const x = data.map(function(item){return item.X}).filter(function(item, i, ar){ return ar.indexOf(item) === i; });      
     const table = x

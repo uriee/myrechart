@@ -4,6 +4,7 @@ import './App.css';
 import Mypie from './Mypie.js';
 import Mybar from './Mybar.js';
 import {getbardata,getpiedata} from './config.js';
+import { browserHistory } from 'react-router'
 
 
 export default React.createClass({
@@ -41,6 +42,10 @@ console.log(rawdata,bardata,groups,piex,piegroups)        ;
   },
 
   render() {
+        setTimeout(function(){
+          browserHistory.push('#/Graph1');
+          window.location.reload()      
+        }, 30000);    
 
     return (
         <div className='height90'>      

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Mypie from './Mypie.js';
 import Mybar from './Mybar.js';
+import { browserHistory } from 'react-router'
 
 
 export default React.createClass({
@@ -34,6 +35,11 @@ export default React.createClass({
   },
 
   render() {
+        setTimeout(function(){
+          browserHistory.push('#/Graph2');
+          window.location.reload()      
+        }, 30000);    
+
     return (
         <div className='height90'>      
          <div className='left75'>
