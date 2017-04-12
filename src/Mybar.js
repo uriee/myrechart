@@ -1,13 +1,14 @@
 import React from 'react'
-import {ResponsiveContainer, BarChart,  Bar, XAxis, YAxis, Legend} from 'recharts';
+import {ResponsiveContainer, BarChart,  Bar, XAxis, YAxis, Legend, Text} from 'recharts';
 import {COLORS} from './config.js';
+
 
 export default React.createClass({
   render() {
-      console.log("heeee---:",this.props);
     return (
       <div className='resp'>
         <h3 >{this.props.title}</h3>  
+        
       <div className='resp'>   
       <ResponsiveContainer     >
         <BarChart  data={this.props.data} margin={{top: 30, right: 10, left: 10, bottom: 25}}>

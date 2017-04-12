@@ -4,7 +4,7 @@ import './App.css';
 import Mypie from './Mypie.js';
 import Mybar from './Mybar.js';
 import {getbardata,getpiedata} from './config.js';
-import { browserHistory } from 'react-router'
+
 
 
 export default React.createClass({
@@ -21,7 +21,7 @@ export default React.createClass({
 
   componentDidMount: function componentDidMount() {
     const TH = this;
-    this.serverRequest = axios.get("http://192.9.200.17:4000/graph/pdemand2").then(function (result) { 
+    this.serverRequest = axios.get("http://192.9.200.17:4000/graph/serial2").then(function (result) { 
         const rawdata = result.data;
         const {bardata,groups} = getbardata(rawdata);
         const {piex,piegroups} = getpiedata(rawdata);
@@ -42,15 +42,15 @@ console.log(rawdata,bardata,groups,piex,piegroups)        ;
   },
 
   render() {
-        setTimeout(function(){
-          browserHistory.push('#/Graph3');
-          window.location.reload()      
-        }, 30000);    
+//        setTimeout(function(){
+//          browserHistory.push('#/Graph1');
+//          window.location.reload()      
+//        }, 30000);    
 
     return (
         <div className='height90'>      
          <div className='left75'>
-          <Mybar data={this.state.bardata} title='Demand Aging' config={{ X: "X",
+          <Mybar data={this.state.bardata} title='Work Orders Aging By Owner' config={{ X: "X",
               datakeys:this.state.groups }} />            
         </div>
 
