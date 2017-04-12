@@ -14,8 +14,8 @@ export default React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-    const TH = this;
-    this.serverRequest = axios.get("http://192.9.200.17:4000/test").then(function (result) {
+    var TH = this;
+    this.serverRequest = axios.get("http://192.9.200.17:4000/rmaout").then(function (result) {
     	console.log(result.data,getcolumnes(result.data)) ;
         TH.setState({
           data: result.data,
@@ -25,12 +25,12 @@ export default React.createClass({
   },
 
   componentWillUnmount: function componentWillUnmount() {
-    this.serverRequest.abort();
+    this.serverRequest.reject;
   },
 
   render() {
     return (
-        <div className='height90'> 
+        <div className='height90' ref="myRef"> 
 
 			<ReactTable
 			  className='row'

@@ -1,5 +1,5 @@
 
-export const COLORS = ['#8884d8', '#00C49F', '#FFBB28', '#FF8042', '#0088FE','#91bfdb','#2c8d59','#448ec3'];
+export const COLORS = ['#8884d8', '#00C49F', '#FFBB28', '#FF8042', '#0088FE','#91bfdb','#2c8d59','#448ec3', '#F0C49F', '#0FBB28', '#0F8042', '#F088FE','#F1bfdb','#Fc8d59','#F48ec3'];
 export const getLegendData = function(data){
 	const groups = data.map(function(item){return item.GROUPS}).filter(function(item, i, ar){ return ar.indexOf(item) === i; });
 	return groups.map(function(item,i){return {label: item, color: COLORS[i%COLORS.length]}});
