@@ -73,6 +73,13 @@ h4 {
     padding: 10px;
 }
 
+.recharts-legend-item-text {
+    font-size: 125%;
+}
+.recharts-text{
+    font-size: 125%;
+}
+
 
 h1,
 h2,

@@ -35,7 +35,7 @@ export default React.createClass({
 
     return (
         <div className='height90'>      
-          <Mybar data={this.state.bardata} title='Demand Aging' config={{ X: "X",
+          <Mybar data={this.state.bardata} title={this.props.title} config={{ X: "X",
               datakeys:this.state.groups }} />            
         </div>
  

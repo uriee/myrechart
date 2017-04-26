@@ -10,7 +10,7 @@ const renderActiveShape = (props) => {
     fill, payload, percent, value ,index} = props;
 
 
-  var u = Math.max(cx,cy,130);
+  var u = Math.min(cx,cy,1930);
   var r = Math.min(cx/cy,cy/cx,0.75);
   const ex = cx-cx*r*1.4
   const ey = (index+1)*5*cy/50;
@@ -23,9 +23,9 @@ const renderActiveShape = (props) => {
 
   return (
     <g>
-      <text fontSize={u/10} x={ex} y={ey} dy={0} textAnchor={textAnchor} fill={fill}>&#x25A0; </text>
-      <text fontSize={u/13}  x={ex+cx/11} y={ey} dy={0} textAnchor={textAnchor} fill="#333">{payload.name}</text>      
-      <text fontSize={u/13} x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'}  dominantBaseline="central">
+      <text fontSize={u/8} x={ex} y={ey} dy={0} textAnchor={textAnchor} fill={fill}>&#x25A0; </text>
+      <text fontSize={u/10}  x={ex+cx/17} y={ey} dy={0} textAnchor={textAnchor} fill="#333">{payload.name}</text>      
+      <text style={{display:(percent < 0.03 ? 'none' : 'yes')}} fontSize={u/10} x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'}  dominantBaseline="central">
       {`${(percent * 100).toFixed(0)}%`}
     </text>      
     </g>

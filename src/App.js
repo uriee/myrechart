@@ -10,6 +10,7 @@ import Graph5 from './Graph5'
 import Graph6 from './Graph6'
 import Porder1 from './Porder1'
 import Porder2 from './Porder2'
+import Porder3 from './Porder3'
 import Pdemand1 from './Pdemand1'
 import Pdemand2 from './Pdemand2'
 import Rmain from './Rmain'
@@ -17,6 +18,7 @@ import Rmaout from './Rmaout'
 import Rmagraph from './Rmagraph'
 import Rmagraph2 from './Rmagraph2'
 import Container from './Container'
+import PorderPie1 from './PorderPie1';
 
 
 class App extends Component {
@@ -28,13 +30,15 @@ class App extends Component {
     <Route path="/Graph5" component={Graph5}/> 
     <Route path="/Graph6" component={Graph6}/>   
     <Route path="/Porder1" component={Porder1}/>          
-    <Route path="/Porder2" component={Porder2}/>      
+    <Route path="/Porder2" component={Porder2}/>     
+    <Route path="/Porder3" component={Porder3}/>      
     <Route path="/Pdemand1" component={Pdemand1}/>  
     <Route path="/Pdemand2" component={Pdemand2}/>      
     <Route path="/Rmain" component={Rmain}/>  
     <Route path="/Rmaout" component={Rmaout}/> 
     <Route path="/Rmaday" component={Rmagraph} />        
-    <Route path="/Rmaweek" component={Rmagraph2} />              
+    <Route path="/Rmaweek" component={Rmagraph2} />     
+    <Route path="/Pie" component={PorderPie1} />              
     <Route path="/purchase" component={Container} script="purchase"/> 
     <Route path="/rma" component={Container} script="rma"/>                   
   </Router>

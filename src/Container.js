@@ -8,6 +8,7 @@ import Rmain from './Rmain';
 import Rmaout from './Rmaout';
 import Rmaday from './Rmagraph';
 import Rmaweek from './Rmagraph2';
+import PorderPie1 from './PorderPie1';
 
 
 var Empty = React.createClass({
@@ -21,12 +22,11 @@ var empty = {NAME : Empty , INTERVAL : 1}
 var Reactive = React.createClass({
     render: function() {
 	if (!this.props.component) return <Empty/>
-    else return <this.props.component />
+    else return <this.props.component title={this.props.title}/>
     }
 })
 
-
-var slides = {'Pdemand1':Pdemand1, 'Pdemand2':Pdemand2, 'Porder1':Porder1, 'Porder2':Porder2, 'Rmain':Rmain , 'Rmaout':Rmaout, 'Rmaday':Rmaday, 'Rmaweek':Rmaweek}
+var slides = {'Pdemand1':Pdemand1, 'Pdemand2':Pdemand2, 'Porder1':Porder1, 'Porder2':Porder2, 'Rmain':Rmain , 'Rmaout':Rmaout, 'Rmaday':Rmaday, 'Rmaweek':Rmaweek, 'PorderPie1':PorderPie1}
 
 export default React.createClass({
 
@@ -69,7 +69,7 @@ export default React.createClass({
 	
     return (
     	<div className='height90' > 
-				<Reactive component={slides[this.state.script[this.state.current].NAME]} />  	
+				<Reactive component={slides[this.state.script[this.state.current].NAME]} title={this.state.script[this.state.current].TITLE} />  	
         </div>
   
       )

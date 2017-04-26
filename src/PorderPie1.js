@@ -1,29 +1,25 @@
 import React from 'react'
 import axios from 'axios';
 import './App.css';
-import Mybar from './Mybar.js';
-import {getbardata} from './config.js';
-
+import Mypie from './Mypie.js';
+import {getpiedata} from './config.js';
 
 export default React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      bardata: [],
-      groups: []
+      piedata: [],
     };
   },
 
 
   componentDidMount: function componentDidMount() {
     const TH = this;
-    this.serverRequest = axios.get("http://192.9.200.17:4000/rmag/1440").then(function (result) { 
-      console.log(result.data)
+    this.serverRequest = axios.get("http://192.9.200.17:4000/graph/porder1").then(function (result) { 
         const rawdata = result.data;
-        const {bardata,groups} = getbardata(rawdata);        
+        const {piex,piegroups} = getpiedata(rawdata);
         TH.setState({
-          bardata: bardata,
-          groups: groups
+          piedata: piegroups,
         });
     });
   },
@@ -34,13 +30,11 @@ export default React.createClass({
   },
 
   render() {
-      return (
+    return (
         <div className='height90'>      
-          <Mybar data={this.state.bardata} title={this.props.title} config={{ X: "X",
-              datakeys:this.state.groups }} />            
+          <h3>{this.props.title}</h3>
+          <Mypie   data={this.state.piedata} />
         </div>
-
-  
       )
   }
 

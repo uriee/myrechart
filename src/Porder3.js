@@ -17,7 +17,7 @@ export default React.createClass({
 
   componentDidMount: function componentDidMount() {
     const TH = this;
-    this.serverRequest = axios.get("http://192.9.200.17:4000/rmag/10080").then(function (result) { 
+    this.serverRequest = axios.get("http://192.9.200.17:4000/graph/porder3").then(function (result) { 
       console.log(result.data)
         const rawdata = result.data;
         const {bardata,groups} = getbardata(rawdata);        
@@ -34,7 +34,7 @@ export default React.createClass({
   },
 
   render() {
-    /*var tf = (this.props.route.timeframe === 1440 ? ' Days' : ' Weeks');*/
+
     return (
         <div className='height90'>      
           <Mybar data={this.state.bardata} title={this.props.title} config={{ X: "X",

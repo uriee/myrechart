@@ -28,7 +28,7 @@ export default React.createClass({
   render() {
     return (
         <div className='height90' > 
-
+        <h3 className='center'>{this.props.title}</h3>
 			<ReactTable
 			  className='row'
 			  data={this.state.data}
