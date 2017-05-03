@@ -40,6 +40,7 @@ class App extends Component {
     <Route path="/Rmaweek" component={Rmagraph2} />     
     <Route path="/Pie" component={PorderPie1} />              
     <Route path="/purchase" component={Container} script="purchase"/> 
+    <Route path="/serial" component={Container} script="serial"/>    
     <Route path="/rma" component={Container} script="rma"/>                   
   </Router>
     );
